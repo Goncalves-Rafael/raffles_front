@@ -1,23 +1,36 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { Avatar, Card, CardHeader } from '@mui/material';
+import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
+import { Route, Routes } from "react-router-dom";
+
+import CreateSecretSanta from './components/CreateSecretSanta';
+import RaffleAdmin from './components/RaffleAdmin';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Card sx={{ maxWidth: "850px", m: "auto", mt: 3 }}>
+        {/* <CardMedia
+          sx={{ height: 140 }}
+          image="https://media.istockphoto.com/id/1439262934/photo/mockup-christmas-card-among-christmas-ornaments-over-a-red-glitter-backdrop.webp?b=1&s=612x612&w=0&k=20&c=J69slOR0BVTmU78ZGrM_HFm48qonorpXr3hJ2_6Y2uM="
+          title="mockup christmas card"
+        /> */}
+        <CardHeader
+            avatar={
+              <Avatar variant="rounded">
+                <CardGiftcardIcon />
+              </Avatar>
+            }
+            title="Amigo Oculto"
+            titleTypographyProps={{variant: "h3"}}
+          />
+          <Routes>
+            <Route path="/raffles/:id/admin" element={<RaffleAdmin />} />
+            <Route path="/" element={< CreateSecretSanta/>} />
+          </Routes>
+          
+      </Card>
     </div>
   );
 }
