@@ -6,6 +6,8 @@ import { Route, Routes } from "react-router-dom";
 
 import CreateSecretSanta from './components/CreateSecretSanta';
 import RaffleAdmin from './components/RaffleAdmin';
+import RaffleParticipantRegister from './components/RaffleParticipantRegister';
+import RaffleSeeParticipantDraw from './components/RaffleSeeParticipantDraw';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
           />
           <Routes>
             <Route path="/raffles/:id/admin" element={<RaffleAdmin />} />
+            <Route path="/raffles/:id/register" element={<RaffleParticipantRegister />} />
+            <Route path="/raffles/:id/see" element={<RaffleSeeParticipantDraw />} />
             <Route path="/" element={< CreateSecretSanta/>} />
           </Routes>
           

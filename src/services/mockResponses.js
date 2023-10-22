@@ -1,5 +1,5 @@
 export {
-	MOCK_CHECK_SANTA,
+	MOCK_CHECK_RAFFLE,
 	MOCK_CREATE_RAFFLE,
 	MOCK_DRAW_RAFFLE,
 	MOCK_REGISTER_RAFFLE,
@@ -23,7 +23,7 @@ const MOCK_REGISTER_RAFFLE = {
 	}
 };
 
-const MOCK_CHECK_SANTA = {
+const MOCK_CHECK_RAFFLE = {
 	"message": "seu amigo oculto é: Fulano"
 };
 
