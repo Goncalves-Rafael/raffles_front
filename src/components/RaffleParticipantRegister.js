@@ -54,23 +54,30 @@ export default function CreateSecretSanta() {
     >
       <Card sx={{ m: "auto", mt: 3, width: "100%" }}>
         <CardContent>
+          {
+            isRaffleReady &&
+              <Alert severity="success">{raffleRegisterResponse.message}</Alert>
+          }
           <Typography variant="body2" color="text.secondary">
             Amigo oculto de id {routeParams.id}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             Insira seu nome abaixo para se registrar no amigo oculto
           </Typography>
-          <TextField sx={{ maxWidth: "50%", m: "auto", mt: 3 }} id="standard-basic" label="Seu nome" variant="standard" 
+          <TextField sx={{ maxWidth: "80%", m: "auto", mt: 3 }} id="standard-basic" label="Seu nome" variant="standard" 
             onInput={e => setParticipantName(e.target.value)}
             value={participantName}
           />
-          {
-            isRaffleReady &&
-              <Alert severity="success">{raffleRegisterResponse.message}</Alert>
-          }
         </CardContent>
-        <CardActions>
-          <Button onClick={registerIntoRaffle} disabled={isRaffleReady}>Registrar</Button>
+        <CardActions sx={{
+              display: 'flex',
+              justifyContent: 'space-around',
+              p: 1,
+              m: 1,
+              bgcolor: 'background.paper',
+              borderRadius: 1,
+            }}>
+          <Button onClick={registerIntoRaffle} disabled={isRaffleReady} variant="contained" color="primary">Registrar</Button>
         </CardActions>
       </Card>
 
