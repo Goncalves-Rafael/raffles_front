@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Alert from '@mui/material/Alert';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
@@ -16,7 +17,7 @@ import {
   InputAdornment
 } from '@mui/material';
 
-import { createRaffle } from '../services/rafflesService'
+import { createRaffle } from '../services/rafflesService';
 
 export default function CreateSecretSanta() {
   const handleMouseDown = (event) => {
@@ -50,16 +51,27 @@ export default function CreateSecretSanta() {
     >
       <Card sx={{ m: "auto", mt: 3, width: "100%" }}>
         <CardContent>
+          {
+            raffle.message &&
+              <Alert severity="success">{raffle.message}</Alert>
+          }
           <Typography variant="body2" color="text.secondary">
             Insira um nome para criar um novo amigo oculto e em seguida envie o link para os convidados participarem.
           </Typography>
-          <TextField sx={{ maxWidth: "50%", m: "auto", mt: 3 }} id="standard-basic" label="Nome do grupo" variant="standard" 
+          <TextField sx={{ maxWidth: "80%", m: "auto", mt: 3 }} id="standard-basic" label="Nome do grupo" variant="standard" 
             onInput={e => setRaffleName(e.target.value)}
             value={raffleName}
           />
         </CardContent>
-        <CardActions>
-          <Button onClick={saveRaffle} disabled={isRaffleReady}>Criar</Button>
+        <CardActions sx={{
+              display: 'flex',
+              justifyContent: 'space-around',
+              p: 1,
+              m: 1,
+              bgcolor: 'background.paper',
+              borderRadius: 1,
+            }}>
+          <Button onClick={saveRaffle} disabled={isRaffleReady} variant="contained" color="primary">Criar</Button>
         </CardActions>
       </Card>
 
