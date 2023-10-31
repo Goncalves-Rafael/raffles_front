@@ -1,10 +1,3 @@
-export {
-	MOCK_CHECK_RAFFLE,
-	MOCK_CREATE_RAFFLE,
-	MOCK_DRAW_RAFFLE,
-	MOCK_REGISTER_RAFFLE,
-	MOCK_STATUS_RAFFLE,
-};
 
 const MOCK_CREATE_RAFFLE = {
 	"message": "sorteio registrado com sucesso. Agora encaminhe o link abaixo para os participantes se cadastrarem",
@@ -35,12 +28,29 @@ const MOCK_STATUS_RAFFLE = {
 	"message": "participantes que já viram seus amigos ocultos",
 	"data": [
 		{
+			"id": "1",
 			"name": "Fulano",
+			"participating": true,
 			"seen": true
 		},
 		{
+			"id": "2",
 			"name": "Ciclano",
+			"participating": false,
 			"seen": false
 		}
 	]
+};
+
+const MOCK_UPDATE_PARTICIPATION = {
+    "message": "participação atualizado com sucesso"
+};
+
+export {
+	MOCK_CHECK_RAFFLE,
+	MOCK_CREATE_RAFFLE,
+	MOCK_DRAW_RAFFLE,
+	MOCK_REGISTER_RAFFLE,
+	MOCK_STATUS_RAFFLE,
+	MOCK_UPDATE_PARTICIPATION,
 };

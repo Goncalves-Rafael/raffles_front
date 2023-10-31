@@ -35,10 +35,16 @@ const participantCheckDraw = (participantId) => {
     return axios.get(`${BASE_URL}/raffles/${participantId}/see`, getConfig(''))
 };
 
+const updateParticipationIntoRaffle = (raffleId, participantId, participate) => {
+    console.log(`Updating participant with id '${participantId}' into raffle with id '${raffleId} to value ${participate}'`);
+    return axios.put(`${BASE_URL}/raffles/${raffleId}/participants/${participantId}/participation`, { participate }, getConfig(''))
+};
+
 export {
     createRaffle,
     drawRaffle,
     participantCheckDraw,
     registerParticipantIntoRaffle,
-    seenRaffle
+    seenRaffle,
+    updateParticipationIntoRaffle
 };

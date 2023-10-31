@@ -20,7 +20,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 
-import { drawRaffle, seenRaffle } from '../services/rafflesService'
+import { drawRaffle, seenRaffle, updateParticipationIntoRaffle } from '../services/rafflesService'
 
 
 export default function RaffleAdmin () {
@@ -28,12 +28,12 @@ export default function RaffleAdmin () {
     const [message, setMessage] = useState('');
     const routeParams = useParams();
 
-    useEffect(() => {
-        seenRaffle(routeParams.id)
-            .then(response => {
-                setParticipans(response.data)
-            })
-    }, []);
+    const updateRaffleData = () => {
+      seenRaffle(routeParams.id)
+        .then(response => {
+            setParticipans(response.data)
+        })
+    }
 
     const triggerDrawRaffle = () => {
         drawRaffle(routeParams.id)
@@ -41,6 +41,13 @@ export default function RaffleAdmin () {
                 setMessage(response.message)
             })
     }
+
+    const updateParticipation = (participantId, participate) => {
+      updateParticipationIntoRaffle(routeParams.id, participantId, participate)
+        .then(updateRaffleData)
+    }
+    
+    useEffect(updateRaffleData, []);
 
     return <Card>
       <CardContent>
@@ -74,7 +81,7 @@ export default function RaffleAdmin () {
                   </TableCell>
                   <TableCell>
                     <Tooltip title="Participando">
-                      <Switch defaultChecked />
+                      <Switch checked={row.participating} onChange={() => {updateParticipation(row.id, !row.participating)}} />
                     </Tooltip>
                   </TableCell>
                 </TableRow>

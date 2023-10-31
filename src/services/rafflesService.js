@@ -1,4 +1,5 @@
-import { MOCK_CREATE_RAFFLE, MOCK_STATUS_RAFFLE, MOCK_DRAW_RAFFLE, MOCK_REGISTER_RAFFLE, MOCK_CHECK_RAFFLE } from './mockResponses';
+import { MOCK_CREATE_RAFFLE, MOCK_STATUS_RAFFLE, MOCK_DRAW_RAFFLE, MOCK_REGISTER_RAFFLE, MOCK_CHECK_RAFFLE, MOCK_UPDATE_PARTICIPATION }
+    from './mockResponses';
 
 const createRaffle = (raffleName) => {
     console.log(`Creating new raffle with name '${raffleName}'`);
@@ -35,10 +36,18 @@ const participantCheckDraw = (participantId) => {
     });
 };
 
+const updateParticipationIntoRaffle = (raffleId, participantId, participate) => {
+    console.log(`Updating participant with id '${participantId}' into raffle with id '${raffleId} to value ${participate}'`);
+    return new Promise((res, rej) => {
+        res(MOCK_UPDATE_PARTICIPATION);
+    });
+};
+
 export {
     createRaffle,
     drawRaffle,
     participantCheckDraw,
     registerParticipantIntoRaffle,
-    seenRaffle
+    seenRaffle,
+    updateParticipationIntoRaffle
 };

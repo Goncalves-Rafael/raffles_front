@@ -38,8 +38,11 @@ function App() {
                   <CardGiftcardIcon/>
                 </Avatar>
               }
+              sx={{
+                fontFamily: 'Montserrat'
+              }}
               title="Amigo Oculto"
-              titleTypographyProps={{variant: "h3"}}
+              titleTypographyProps={{variant: "h3", fontFamily: 'Montserrat'}}
             />
             <Routes>
               <Route path="/raffles/:id/admin" element={<RaffleAdmin />} />
