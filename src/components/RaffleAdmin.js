@@ -15,6 +15,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -24,14 +25,15 @@ import { drawRaffle, seenRaffle, updateParticipationIntoRaffle } from '../servic
 
 
 export default function RaffleAdmin () {
-    const [participants, setParticipans] = useState([]);
+    const [raffleData, setRaffleData] = useState({});
     const [message, setMessage] = useState('');
     const routeParams = useParams();
 
     const updateRaffleData = () => {
       seenRaffle(routeParams.id)
         .then(response => {
-            setParticipans(response.data)
+          console.log(response)
+          setRaffleData(response.data)
         })
     }
 
@@ -52,6 +54,11 @@ export default function RaffleAdmin () {
     return <Card>
       <CardContent>
         <TableContainer component={Paper}>
+          {raffleData.name && 
+            <Typography color="text.primary" fontFamily="Montserrat" margin="10px" >
+              Acompanhe o amigo oculto: {raffleData.name}
+            </Typography>
+          }
           {
               message.length > 0 &&
               <Alert severity="success">{message}</Alert>
@@ -68,7 +75,7 @@ export default function RaffleAdmin () {
               </TableRow>
             </TableHead>
             <TableBody>
-              {participants.map((row) => (
+              {raffleData && raffleData.participants && raffleData.participants.map((row) => (
                 <TableRow key={row.name}>
                   <TableCell component="th" scope="row" colSpan={3}>
                     {row.name}
@@ -81,7 +88,7 @@ export default function RaffleAdmin () {
                   </TableCell>
                   <TableCell>
                     <Tooltip title="Participando">
-                      <Switch checked={row.participating} onChange={() => {updateParticipation(row.id, !row.participating)}} />
+                      <Switch checked={row.participate} onChange={() => {updateParticipation(row.id, !row.participate)}} />
                     </Tooltip>
                   </TableCell>
                 </TableRow>

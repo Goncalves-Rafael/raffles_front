@@ -26,20 +26,24 @@ const MOCK_DRAW_RAFFLE = {
 
 const MOCK_STATUS_RAFFLE = {
 	"message": "participantes que já viram seus amigos ocultos",
-	"data": [
-		{
-			"id": "1",
-			"name": "Fulano",
-			"participating": true,
-			"seen": true
-		},
-		{
-			"id": "2",
-			"name": "Ciclano",
-			"participating": false,
-			"seen": false
-		}
-	]
+	"data": {
+		"id": "139a8846c-2a6f-4602-9176-79ee4e5e3059",
+		"name": "Nome do sorteio",
+		"participants": [
+		  {
+			"id": "5a6a0b4c-2a6f-4602-9176-79ee4e5e3059",
+			"name": "Nome do participante",
+			"participate": true,
+			"seen": true,
+		  },
+		  {
+			"id": "5a6a0b4c-2a6f-4602-9176-79ee4e5f3058",
+			"name": "Nome do participante dois",
+			"participate": false,
+			"seen": false,
+		  }
+		]
+	}
 };
 
 const MOCK_UPDATE_PARTICIPATION = {

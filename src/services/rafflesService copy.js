@@ -17,7 +17,7 @@ const createRaffle = (raffleName) => {
 
 const seenRaffle = (raffleId) => {
     console.log(`Retrieving participants from raffle with id '${raffleId}'`);
-    return axios.get(`${BASE_URL}/raffles/${raffleId}/seen`, getConfig(''))
+    return axios.get(`${BASE_URL}/raffles/${raffleId}`, getConfig(''))
 };
 
 const drawRaffle = (raffleId) => {
