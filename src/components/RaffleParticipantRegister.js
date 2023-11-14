@@ -44,8 +44,8 @@ export default function CreateSecretSanta() {
 
   const toClipBoard = (text) => {navigator.clipboard.writeText(text)}
   
-  const baseUrl = window.location.href.split('/raffles')[0]
-  const getCheckDrawLink = (id) => `${baseUrl}/raffles/${id}/see`
+  const baseUrl = window.location.href.split('/#/')[0]
+  const getCheckDrawLink = (id) => `${baseUrl}/#/raffles/${id}/see`
 
   return (
     <Box sx={{
