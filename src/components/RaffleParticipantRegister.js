@@ -37,10 +37,15 @@ export default function CreateSecretSanta() {
   const registerIntoRaffle = (ev) => {
     ev.preventDefault();
     registerParticipantIntoRaffle(routeParams.id, participantName)
-      .then(setRaffleRegisterResponse);
+      .then(registerResponse => {
+        setRaffleRegisterResponse(registerResponse.data);
+      });
   }
 
   const toClipBoard = (text) => {navigator.clipboard.writeText(text)}
+  
+  const baseUrl = window.location.href.split('/raffles')[0]
+  const getCheckDrawLink = (id) => `${baseUrl}/raffles/${id}/see`
 
   return (
     <Box sx={{
@@ -90,12 +95,12 @@ export default function CreateSecretSanta() {
               type='text'
               variant="standard"
               disabled
-              value={isRaffleReady ? raffleRegisterResponse.data['result_link'] : ''}
+              value={isRaffleReady ? getCheckDrawLink(raffleRegisterResponse.data['id']) : ''}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
                     aria-label="copy url"
-                    onClick={() => toClipBoard(isRaffleReady ? raffleRegisterResponse.data['result_link'] : '')}
+                    onClick={() => toClipBoard(isRaffleReady ? getCheckDrawLink(raffleRegisterResponse.data['id']) : '')}
                     onMouseDown={handleMouseDown}
                     edge="end"
                   >

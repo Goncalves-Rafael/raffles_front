@@ -16,7 +16,7 @@ export default function RaffleAdmin () {
     useEffect(() => {
       participantCheckDraw(routeParams.id)
         .then(response => {
-          setMessage(response.message)
+          setMessage(response.data.message)
         })
     }, []);
 

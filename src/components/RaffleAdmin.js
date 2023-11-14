@@ -27,12 +27,13 @@ import { drawRaffle, seenRaffle, updateParticipationIntoRaffle } from '../servic
 export default function RaffleAdmin () {
     const [raffleData, setRaffleData] = useState({});
     const [message, setMessage] = useState('');
+    const [isError, setIsError] = useState(false);
     const routeParams = useParams();
 
     const updateRaffleData = () => {
       seenRaffle(routeParams.id)
         .then(response => {
-          console.log(response)
+          console.log(response.data)
           setRaffleData(response.data)
         })
     }
@@ -40,8 +41,12 @@ export default function RaffleAdmin () {
     const triggerDrawRaffle = () => {
         drawRaffle(routeParams.id)
             .then(response => {
-                setMessage(response.message)
+                setMessage(response.data.message)
             })
+            .catch(error => {
+              setMessage(error.response.data.message)
+              setIsError(true)
+          })
     }
 
     const updateParticipation = (participantId, participate) => {
@@ -54,14 +59,14 @@ export default function RaffleAdmin () {
     return <Card>
       <CardContent>
         <TableContainer component={Paper}>
-          {raffleData.name && 
+          {raffleData.data && raffleData.data.name && 
             <Typography color="text.primary" fontFamily="Montserrat" margin="10px" >
-              Acompanhe o amigo oculto: {raffleData.name}
+              Acompanhe o amigo oculto: {raffleData.data.name}
             </Typography>
           }
           {
               message.length > 0 &&
-              <Alert severity="success">{message}</Alert>
+              <Alert severity={isError ? "error" : "success"}>{message}</Alert>
           }
           <Table sx={{ minWidth: 650 }} aria-label="caption table">
             <caption>
@@ -75,7 +80,7 @@ export default function RaffleAdmin () {
               </TableRow>
             </TableHead>
             <TableBody>
-              {raffleData && raffleData.participants && raffleData.participants.map((row) => (
+              {raffleData && raffleData.data && raffleData.data.participants && raffleData.data.participants.map((row) => (
                 <TableRow key={row.name}>
                   <TableCell component="th" scope="row" colSpan={3}>
                     {row.name}

@@ -2,7 +2,7 @@
 import './App.css';
 import { Avatar, Card, CardHeader } from '@mui/material';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 import CreateRaffle from './components/CreateRaffle';
 import RaffleAdmin from './components/RaffleAdmin';
@@ -48,7 +48,8 @@ function App() {
               <Route path="/raffles/:id/admin" element={<RaffleAdmin />} />
               <Route path="/raffles/:id/register" element={<RaffleParticipantRegister />} />
               <Route path="/raffles/:id/see" element={<RaffleSeeParticipantDraw />} />
-              <Route path="/" element={< CreateRaffle/>} />
+              <Route path="/raffles" element={< CreateRaffle/>} />
+              <Route path="/*" element={<Navigate to="/raffles" />}/>
             </Routes>
             
         </Card>

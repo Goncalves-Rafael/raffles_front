@@ -34,10 +34,15 @@ export default function CreateSecretSanta() {
   const saveRaffle = (ev) => {
     ev.preventDefault();
     createRaffle(raffleName)
-      .then(setRaffle);
+      .then(raffleData => {
+        console.log(raffleData)
+        setRaffle(raffleData.data)
+      });
   }
 
   const toClipBoard = (text) => {navigator.clipboard.writeText(text)}
+  const getAdminLink = (id) => `http://localhost:3000/raffles/${id}/admin`
+  const getInviteLink = (id) => `http://localhost:3000/raffles/${id}/register`
 
   return (
     <Box sx={{
@@ -84,12 +89,12 @@ export default function CreateSecretSanta() {
               type='text'
               variant="standard"
               disabled
-              value={isRaffleReady ? raffle.data['admin_link'] : ''}
+              value={isRaffleReady ? getAdminLink(raffle.data['id']) : ''}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
                     aria-label="copy url"
-                    onClick={() => toClipBoard(isRaffleReady ? raffle.data['admin_link'] : '')}
+                    onClick={() => toClipBoard(isRaffleReady ? getAdminLink(raffle.data['id']) : '')}
                     onMouseDown={handleMouseDown}
                     edge="end"
                   >
@@ -110,12 +115,12 @@ export default function CreateSecretSanta() {
               type='text'
               variant="standard"
               disabled
-              value={isRaffleReady ? raffle.data['register_link'] : ''}
+              value={isRaffleReady ? getInviteLink(raffle.data['id']) : ''}
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
                     aria-label="copy url"
-                    onClick={() => toClipBoard(isRaffleReady ? raffle.data['register_link'] : '')}
+                    onClick={() => toClipBoard(isRaffleReady ? getInviteLink(raffle.data['id']) : '')}
                     onMouseDown={handleMouseDown}
                     edge="end"
                   >
