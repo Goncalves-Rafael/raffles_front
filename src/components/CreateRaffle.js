@@ -41,8 +41,9 @@ export default function CreateSecretSanta() {
   }
 
   const toClipBoard = (text) => {navigator.clipboard.writeText(text)}
-  const getAdminLink = (id) => `http://localhost:3000/raffles/${id}/admin`
-  const getInviteLink = (id) => `http://localhost:3000/raffles/${id}/register`
+  const baseUrl = window.location.href.split('/raffles')[0]
+  const getAdminLink = (id) => `${baseUrl}/raffles/${id}/admin`
+  const getInviteLink = (id) => `${baseUrl}/raffles/${id}/register`
 
   return (
     <Box sx={{
