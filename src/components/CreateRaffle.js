@@ -3,6 +3,7 @@ import Alert from '@mui/material/Alert';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
+
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
@@ -18,6 +19,9 @@ import {
 } from '@mui/material';
 
 import { createRaffle } from '../services/rafflesService';
+import { INSTRUCTIONS } from '../config/constants';
+
+import HelpModal from './HelpModal';
 
 export default function CreateSecretSanta() {
   const handleMouseDown = (event) => {
@@ -78,6 +82,7 @@ export default function CreateSecretSanta() {
               borderRadius: 1,
             }}>
           <Button onClick={saveRaffle} disabled={isRaffleReady} variant="contained" color="primary">Criar</Button>
+          <HelpModal description={INSTRUCTIONS.HOME.description} instructions={INSTRUCTIONS.HOME.tips}/>
         </CardActions>
       </Card>
 

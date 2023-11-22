@@ -22,6 +22,9 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 
 import { drawRaffle, seenRaffle, updateParticipationIntoRaffle } from '../services/rafflesService'
+import { INSTRUCTIONS } from '../config/constants';
+
+import HelpModal from './HelpModal';
 
 
 export default function RaffleAdmin () {
@@ -110,6 +113,7 @@ export default function RaffleAdmin () {
               borderRadius: 1,
             }}>
           <Button onClick={triggerDrawRaffle} variant="contained" color="primary">Sortear</Button>
+          <HelpModal description={INSTRUCTIONS.ADMIN.description} instructions={INSTRUCTIONS.ADMIN.tips}/>
         </CardActions>
       </CardContent>
     </Card>;

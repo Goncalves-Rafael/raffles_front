@@ -20,6 +20,10 @@ import {
 
 import { registerParticipantIntoRaffle } from '../services/rafflesService'
 
+import { INSTRUCTIONS } from '../config/constants';
+
+import HelpModal from './HelpModal';
+
 export default function CreateSecretSanta() {
   const handleMouseDown = (event) => {
     event.preventDefault();
@@ -83,6 +87,7 @@ export default function CreateSecretSanta() {
               borderRadius: 1,
             }}>
           <Button onClick={registerIntoRaffle} disabled={isRaffleReady} variant="contained" color="primary">Registrar</Button>
+          <HelpModal description={INSTRUCTIONS.INVITE.description} instructions={INSTRUCTIONS.INVITE.tips}/>
         </CardActions>
       </Card>
 
