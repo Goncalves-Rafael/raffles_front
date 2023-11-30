@@ -1,8 +1,7 @@
 import * as React from 'react';
 import InfoIcon from '@mui/icons-material/Info';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import { Avatar, Card, CardHeader, CardContent } from '@mui/material';
-import Button from '@mui/material/Button';
+import { Card, CardHeader, CardContent } from '@mui/material';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -21,19 +20,16 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal({description, instructions}) {
+export default function VoteModal({voto, r, registered}) {
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  console.log('Description')
-  console.log(description)
+  React.useEffect(() => {
+    setOpen(registered);
+  }, [registered])
 
   return (
     <div>
-      <Button onClick={handleOpen} variant="contained" color="secondary">Ajuda</Button>
       <Modal
         open={open}
-        onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -45,22 +41,30 @@ export default function BasicModal({description, instructions}) {
               sx={{
                 fontFamily: 'Montserrat'
               }}
-              title="Instruções"
+              title="Salvar dados"
               titleTypographyProps={{variant: "h5", fontFamily: 'Montserrat'}}
             />
           <CardContent>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              {description}
+              Voto realizado com sucesso! <br />Salve os dados abaixo para conseguir validar os resultados ao final da eleição:
             </Typography>
             <List dense>
-              {instructions.map(instruction => <ListItem>
+              <ListItem>
                 <ListItemIcon>
                   <ArrowRightIcon />
                 </ListItemIcon>
                 <ListItemText
-                  primary={instruction}
+                  primary={`Voto: ${voto}`}
                 />
-              </ListItem>)}
+              </ListItem>
+              <ListItem>
+                <ListItemIcon>
+                  <ArrowRightIcon />
+                </ListItemIcon>
+                <ListItemText className='wrap-text'
+                  primary={`R: ${r}`}
+                />
+              </ListItem>
             </List>
           </CardContent>
         </Card>

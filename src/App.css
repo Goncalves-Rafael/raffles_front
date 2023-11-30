@@ -16,6 +16,11 @@
   }
 }
 
+.wrap-text {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

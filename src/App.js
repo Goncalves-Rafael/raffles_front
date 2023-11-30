@@ -2,12 +2,8 @@
 import './App.css';
 import { Avatar, Card, CardHeader } from '@mui/material';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
-import { Navigate, Route, Routes } from "react-router-dom";
-
-import CreateRaffle from './components/CreateRaffle';
-import RaffleAdmin from './components/RaffleAdmin';
-import RaffleParticipantRegister from './components/RaffleParticipantRegister';
-import RaffleSeeParticipantDraw from './components/RaffleSeeParticipantDraw';
+import AuthProvider from "./provider/AuthProvider";
+import Routes from "./routes/Routes";
 
 import { ThemeProvider, createTheme  } from '@mui/material/styles';
 
@@ -42,17 +38,12 @@ function App() {
               sx={{
                 fontFamily: 'Montserrat'
               }}
-              title="Amigo Oculto"
+              title="MiniVote"
               titleTypographyProps={{variant: "h3", fontFamily: 'Montserrat'}}
             />
-            <Routes>
-              <Route path="/raffles/:id/admin" element={<RaffleAdmin />} />
-              <Route path="/raffles/:id/register" element={<RaffleParticipantRegister />} />
-              <Route path="/raffles/:id/see" element={<RaffleSeeParticipantDraw />} />
-              <Route path="/raffles" element={< CreateRaffle/>} />
-              <Route path="/*" element={<Navigate to="/raffles" />}/>
-            </Routes>
-            
+            <AuthProvider>
+              <Routes />
+            </AuthProvider>
         </Card>
       </ThemeProvider>
     </div>
